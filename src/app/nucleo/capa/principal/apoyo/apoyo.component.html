@@ -1,0 +1,89 @@
+<form>
+
+	<input value="Mostrar Formulario" type="button" (click)="mostrar()"/>
+	<br>
+	<input value="Ocultar Formulario" type="button" (click)="ocultar()"/>
+	<br>
+	<ng-container *ngIf="mostrarFormulario">
+	<div>
+		<section>
+			<label for="name">Nombre Persona</label>
+			<input name="name" type="text" [(ngModel)]='persona.nombre' placeholder="Nombre Persona"/>
+		</section>
+		<br>
+		<section>
+			<label for="lastName">Apellido Persona </label>
+			<input name="lastName" type="text" [(ngModel)]='persona.apellido' placeholder="Apellido Persona"/>
+		</section>
+		<br>
+		<section>
+			<label for="identificationType">Tipo Identificación </label>
+			<input name="identificationType" type="text" [(ngModel)]='persona.tipoIdentificacion' placeholder="Tipo Identificación"/>
+		</section>
+		<br>
+		<section>
+			<label for="identificationNumber">Número de Identificación </label>
+			<input name="identificationNumber" type="text" [(ngModel)]='persona.numeroIdentificacion' placeholder="Número de Identificación"/>
+		</section>
+		<br>
+		<section>
+			<label for="older">Mayor Edad </label>
+			<select name="older" ng-model="persona.mayorEdad">
+				<option value="true">SI</option>
+				<option value="false">NO</option>
+			</select>
+		</section>
+		<br>
+		<section>
+			<label for="gender">Sexo </label>
+			<input name="gender" type="radio" [(ngModel)]='persona.sexo' value="F"/>
+			<input name="gender" type="radio" [(ngModel)]='persona.sexo' value="M"/>
+		</section>
+		<br>
+		
+		<input value="Guardar" type="submit" (click)="guardar()"/>
+		
+		<ul *ngIf="personas.lenght>0; else empty">
+			<li *ngFor="let per of personas">
+				<span>{{per.nombre|lowercase}}</span>
+				<span>{{per.apellido|lowercase}}</span>
+				<span>{{per.tipoIdentificacion|lowercase}}</span>
+				<span>{{per.numeroIdentificacion|lowercase}}</span>
+				<span>{{per.mayorEdad|lowercase}}</span>
+				<span>{{per.sexo|uppercase}}</span>
+				<input value="Borrar" type="button" (click)="borrar(per)"/>
+			</li>
+		</ul>
+		<pre>{{ persona|json}}</pre>
+	</div>
+	
+	<div>
+		<table border=1;>
+			<tr>
+				<td>Nombre</td>
+				<td>Apellido</td>
+				<td>Tipo Identificación</td>
+				<td>Número Identificación</td>
+				<td>Mayor Edad</td>
+				<td>Sexo</td>
+			</tr>
+			<tr>
+				<td>Juan</td>
+				<td>Perez</td>
+				<td>Cédula</td>
+				<td>1043</td>
+				<td>SI</td>
+				<td>M</td>
+			</tr>
+			<tr>
+				<td>Maria</td>
+				<td>Perez</td>
+				<td>Tarjeta Identidad</td>
+				<td>1010</td>
+				<td>NO</td>
+				<td>F</td>
+			</tr>
+		</table>
+	</div>
+	</ng-container>
+</form>
